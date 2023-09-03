@@ -3,7 +3,7 @@ from enum import Enum
 
 class TT(Enum):
 
-    SEMICOLOR = 0
+    SEMICOLON = 0
     LBRACE = 1
     RBRACE = 2
     LPAREN = 3
@@ -41,6 +41,18 @@ class TT(Enum):
 
 
 class Token(object):
+
+    keywords = {
+        "if": TT.IF,
+        "else": TT.ELSE,
+        "while": TT.WHILE,
+        "for": TT.FOR,
+        "continue": TT.CONTINUE,
+        "break": TT.BREAK,
+        "var": TT.VAR,
+        "print": TT.PRINT
+    }
+    
     def __init__(self, type: TT, src: str, value: object, line: int) -> None:
         self.type: TT = type
         self.src: str = src
