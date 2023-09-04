@@ -1,12 +1,12 @@
 import config as _
 
 from engine.game import Game
-from engine.game_object.game_object import TestGameObject
+from game.world.cyborg import Cyborg
 
 
 def main():
     game: Game = Game('LÖVENET')
-    TestGameObject(game)
+    Cyborg(game=game)
     game.run()
 
 

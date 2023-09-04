@@ -3,7 +3,7 @@ class PYGAMECONSTANTS:
     class WINDOW:
         WIDTH: int = 1366
         HEIGHT: int = 768
-        FPS: int = 30
+        FPS: int = 60
 
 
 class PATH:

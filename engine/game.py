@@ -2,12 +2,15 @@ import pygame
 
 from engine.constants import PYGAMECONSTANTS, SETTINGS
 from engine.graphics import Graphics
+from engine.input import Input
 from engine.game_object.game_object import GameObject
 
 
 class Game(object):
     def __init__(self, name: str) -> None:
         pygame.init()
+
+        self.input_handler: Input = Input()
 
         self.game_objects: list[GameObject] = []
 
@@ -52,8 +55,10 @@ class Game(object):
     """
     
     def __handle_events(self) -> None:
-        for event in pygame.event.get():
+        events: list[pygame.event.Event] = pygame.event.get()
+        for event in events:
             self.__handle_event(event)
+        self.input_handler.update(events)
 
     def __handle_event(self, event: pygame.event.Event) -> None:
         if event.type == pygame.QUIT or (event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE):

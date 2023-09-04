@@ -3,6 +3,7 @@ from enum import Enum
 
 class TT(Enum):
 
+    COMMA = -1
     SEMICOLON = 0
     LBRACE = 1
     RBRACE = 2
@@ -29,15 +30,20 @@ class TT(Enum):
     FOR = 20
     CONTINUE = 21
     BREAK = 22
+    AND = 23
+    OR = 24
+    TRUE = 25
+    FALSE = 26
 
-    VAR = 23
-    PRINT = 24
+    VAR = 27
+    PRINT = 28
 
-    STRING = 25
-    NUMBER = 26
-    IDENTIFIER = 27
+    STRING = 29
+    NUMBER = 30
+    IDENTIFIER = 31
+    NIL = 32
 
-    EOF = 28
+    EOF = 33
 
 
 class Token(object):
@@ -50,7 +56,12 @@ class Token(object):
         "continue": TT.CONTINUE,
         "break": TT.BREAK,
         "var": TT.VAR,
-        "print": TT.PRINT
+        "print": TT.PRINT,
+        "nil": TT.NIL,
+        "and": TT.AND,
+        "or": TT.OR,
+        "true": TT.TRUE,
+        "false": TT.FALSE,
     }
     
     def __init__(self, type: TT, src: str, value: object, line: int) -> None:

@@ -10,9 +10,24 @@ from loguru import logger
 from engine.constants import PATH
 
 
+class Position(object):
+    """Need this class because reference to its instance will be passed into the surface"""
+
+    def __init__(self, x: int, y: int) -> None:
+        self.x: int = x
+        self.y: int = y
+
+    def move(self, x: int = 0, y: int = 0) -> None:
+        self.x += x
+        self.y += y
+
+    def get_tuple(self) -> tuple[int, int]:
+        return (self.x, self.y)
+
+
 class Surface(pygame.Surface):
-    def __init__(self, pos: tuple[int, int], size: tuple[int, int], flags: int = 0) -> None:
-        self.pos: tuple[int, int] = pos
+    def __init__(self, pos: Position, size: tuple[int, int], flags: int = 0) -> None:
+        self.pos: Position = pos
         super().__init__(size, flags)
 
 
@@ -24,7 +39,7 @@ class Graphics(object):
     @staticmethod
     def render_surfaces(main: pygame.Surface) -> None:
         for surface in Graphics.render_queue.values():
-            main.blit(surface, surface.pos)
+            main.blit(surface, surface.pos.get_tuple())
 
     @staticmethod
     def subscribe(surface: Surface):
